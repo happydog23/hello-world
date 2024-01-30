@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: test-dbt
+    schema: dbt_aavital
+    tables:
+      - name: raw_customers
+      - name: raw_orders
+      - name: raw_payments
