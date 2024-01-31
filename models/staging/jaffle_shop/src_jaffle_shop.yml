@@ -6,7 +6,24 @@ sources:
     schema: dbt_aavital
     tables:
       - name: raw_customers
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
       - name: raw_orders
+        columns:
+          - name: id
+            tests:
+              - unique              
+              - not_null
+        loaded_at_field: _etl_loaded_at
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+
+
+
       - name: raw_payments
         loaded_at_field: _etl_loaded_at
         freshness:
