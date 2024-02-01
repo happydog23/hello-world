@@ -2,18 +2,23 @@ version: 2
 
 sources:
   - name: jaffle_shop
+    description: a clone of a Postgres application database
     database: test-dbt
     schema: dbt_aavital
     tables:
       - name: raw_customers
+        description: the raw customers data
         columns:
           - name: id
+            description: the primary key for the raw customers data
             tests:
               - unique
               - not_null
       - name: raw_orders
+        description: the raw orders data
         columns:
           - name: id
+            description: the primary key for the raw orders data
             tests:
               - unique              
               - not_null
@@ -22,9 +27,14 @@ sources:
           warn_after: {count: 12, period: hour}
           error_after: {count: 24, period: hour}
 
-
-
       - name: raw_payments
+        description: the raw payments data
+        columns:
+          - name: id
+            description: the primary key for the raw payments data
+            tests:
+              - unique
+              - not_null
         loaded_at_field: _etl_loaded_at
         freshness:
           warn_after: {count: 12, period: hour}
